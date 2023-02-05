@@ -4,37 +4,25 @@
              x:Class="SalaryCalculator_.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
-
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
-
+        <VerticalStackLayout Padding="5">
+            <VerticalStackLayout BindingContext="{Binding Salary}">
+                <Entry Placeholder="Enter Salary Netto" Text="{Binding SalaryNetto}" />
+                <DatePicker Date="{Binding SalaryDate}"/>
+            </VerticalStackLayout>
+            <Button Text="Save" WidthRequest="100" HorizontalOptions="Start"
+                        Command="{Binding Command}" CommandParameter="{Binding Salary}" />
+            <ListView ItemsSource="{Binding Salary}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <VerticalStackLayout>
+                                <Label Text="{Binding SalaryNetto}" />
+                                <Label Text="{Binding Date}" />
+                            </VerticalStackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </VerticalStackLayout>
     </ScrollView>
 
